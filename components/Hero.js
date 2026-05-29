@@ -5,7 +5,7 @@ function Hero() {
                 {/* Background Image & Overlay */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="hero.jpeg"
+                        src="hero.webp"
                         alt="Bihar Government Secretariat"
                         className="w-full h-full object-cover object-center"
                     />
