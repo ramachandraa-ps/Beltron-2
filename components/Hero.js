@@ -1,16 +1,65 @@
 function Hero() {
     try {
+        const slides = [
+            {
+                src: "hero.webp",
+                alt: "Bihar Government Secretariat",
+                position: "center 46%"
+            },
+            {
+                src: "Bappu%20Towers.jpg",
+                alt: "BELTRON technology building",
+                position: "center 46%"
+            }
+        ];
+        const [activeSlide, setActiveSlide] = React.useState(0);
+        const goToPreviousSlide = () => {
+            setActiveSlide((current) => (current - 1 + slides.length) % slides.length);
+        };
+        const goToNextSlide = () => {
+            setActiveSlide((current) => (current + 1) % slides.length);
+        };
+
+        React.useEffect(() => {
+            const slideTimer = window.setInterval(() => {
+                setActiveSlide((current) => (current + 1) % slides.length);
+            }, 5000);
+
+            return () => window.clearInterval(slideTimer);
+        }, []);
+
         return (
-            <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden" data-name="Hero" data-file="components/Hero.js">
-                {/* Background Image & Overlay */}
+            <section className="relative min-h-[620px] pt-32 pb-20 lg:min-h-[680px] lg:pt-48 lg:pb-32 overflow-hidden" data-name="Hero" data-file="components/Hero.js">
+                {/* Background Image Carousel & Overlay */}
                 <div className="absolute inset-0 z-0">
-                    <img
-                        src="hero.webp"
-                        alt="Bihar Government Secretariat"
-                        className="w-full h-full object-cover object-center"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/90 via-[var(--primary)]/70 to-transparent"></div>
+                    {slides.map((slide, index) => (
+                        <img
+                            key={slide.src}
+                            src={slide.src}
+                            alt={slide.alt}
+                            style={{ objectPosition: slide.position }}
+                            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === activeSlide ? 'opacity-100' : 'opacity-0'}`}
+                        />
+                    ))}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/90 via-[var(--primary)]/55 to-black/10"></div>
+                    <div className="absolute inset-0 bg-black/15"></div>
                 </div>
+
+                <button
+                    onClick={goToPreviousSlide}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/15 border border-white/30 text-white backdrop-blur-md hover:bg-white/25 transition-colors hidden md:flex items-center justify-center"
+                    aria-label="Previous hero image"
+                >
+                    <div className="icon-chevron-left text-2xl"></div>
+                </button>
+
+                <button
+                    onClick={goToNextSlide}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/15 border border-white/30 text-white backdrop-blur-md hover:bg-white/25 transition-colors hidden md:flex items-center justify-center"
+                    aria-label="Next hero image"
+                >
+                    <div className="icon-chevron-right text-2xl"></div>
+                </button>
 
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="max-w-3xl">
@@ -35,6 +84,18 @@ function Hero() {
                             <button onClick={() => window.location.href='tenders.html'} className="btn-outline border-white text-white hover:bg-white hover:text-[var(--primary)]">
                                 View Tenders
                             </button>
+                        </div>
+
+                        <div className="flex items-center space-x-2 mt-8" aria-label="Hero image slides">
+                            {slides.map((slide, index) => (
+                                <button
+                                    key={slide.src}
+                                    onClick={() => setActiveSlide(index)}
+                                    className={`h-2.5 rounded-full transition-all duration-300 ${index === activeSlide ? 'w-8 bg-[var(--accent)]' : 'w-2.5 bg-white/50 hover:bg-white/80'}`}
+                                    aria-label={`Show slide ${index + 1}`}
+                                    aria-current={index === activeSlide ? 'true' : 'false'}
+                                ></button>
+                            ))}
                         </div>
                     </div>
                 </div>

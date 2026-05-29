@@ -50,9 +50,19 @@ function Header() {
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex justify-between items-center">
                             {/* Logo Area */}
-                            <div className="flex items-center cursor-pointer">
-                                <img src="https://app.trickle.so/storage/public/images/usr_143a0d6be0000001/11e93ea1-7289-4aa5-9d43-426d007e6a7f.webp" alt="BSEDC Logo" className="h-12 sm:h-16 w-auto object-contain mix-blend-multiply" />
-                            </div>
+                            <a href="index.html" className="flex items-center gap-3 group cursor-pointer" aria-label="Bihar State Electronics Development Corporation Ltd.">
+                                <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 shadow-sm group-hover:shadow-md transition-shadow">
+                                    <img
+                                        src="https://hercules-cdn.com/file_xiij45xLQaIy98McRcwUAHaj"
+                                        alt="BELTRON Logo"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div className="hidden sm:block">
+                                    <div className="font-bold text-[var(--primary)] text-xl leading-none tracking-tight">BELTRON</div>
+                                    <div className="text-[11px] text-gray-600 leading-tight mt-1 w-56">Bihar State Electronics Development Corporation Ltd.</div>
+                                </div>
+                            </a>
 
                             {/* Desktop Nav */}
                             <nav className="hidden lg:flex space-x-8 items-center">
