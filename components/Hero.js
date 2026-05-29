@@ -4,9 +4,9 @@ function Hero() {
             <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden" data-name="Hero" data-file="components/Hero.js">
                 {/* Background Image & Overlay */}
                 <div className="absolute inset-0 z-0">
-                    <img 
-                        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000" 
-                        alt="Digital Earth Network" 
+                    <img
+                        src="hero.jpeg"
+                        alt="Bihar Government Secretariat"
                         className="w-full h-full object-cover object-center"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/90 via-[var(--primary)]/70 to-transparent"></div>
